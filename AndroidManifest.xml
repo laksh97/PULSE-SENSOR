@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:"http://schemas.android.com/apk/res/android" android:versionCode="16" android:versionName="2.7.1" package="com.radiusnetworks.locate" platformBuildVersionCode="23" platformBuildVersionName="6.0-2704002">
+    <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="23" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <application android:theme="@style/AppTheme" android:label="AltBeacon Loc" android:icon="@drawable/ic_launcher" android:name="com.radiusnetworks.locate.IBeaconLocateApplication" android:allowBackup="true">
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.EddystoneEidRegistrationActivity" android:screenOrientation="portrait" android:configChanges="orientation" />
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.MainActivity" android:screenOrientation="portrait" android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.RangingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.RANGING" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.SettingsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SETTINGS" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.CalibrationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.CALIBRATION" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.DistanceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.DISTANCE" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.IBeaconActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.IBEACON" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.RssiSurveyActivity" />
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.TransmitterActivity" android:screenOrientation="portrait" android:configChanges="orientation" android:windowSoftInputMode="33" />
+        <activity android:label="@string/title_bar_text" android:name="com.radiusnetworks.locate.FormatsActivity" android:screenOrientation="portrait" android:configChanges="orientation" />
+        <provider android:name="com.google.android.gms.measurement.AppMeasurementContentProvider" android:exported="false" android:authorities="com.radiusnetworks.locate.google_measurement_service" />
+        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.measurement.UPLOAD" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" />
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:exported="false" android:excludeFromRecents="true" />
+        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <service android:label="beacon" android:name="org.altbeacon.beacon.service.BeaconService" android:enabled="true" android:exported="false" android:isolatedProcess="false" />
+        <service android:name="org.altbeacon.beacon.BeaconIntentProcessor" android:enabled="true" android:exported="false" />
+    </application>
+</manifest>
